@@ -9,11 +9,11 @@ public class Q147_InsertionSortList {
 		ListNode c = new ListNode(4);
 		ListNode d = new ListNode(2);
 		head.next = b;
-		b.next=c;
-		c.next=d;
-		
+		b.next = c;
+		c.next = d;
+
 		head = testcase.insertionSortList(head);
-		System.out.println(head.val+","+head.next.val);
+		System.out.println(head.val + "," + head.next.val);
 	}
 
 	public ListNode insertionSortList(ListNode head) {
@@ -21,35 +21,35 @@ public class Q147_InsertionSortList {
 		ListNode cur = head;
 		ListNode next = null;
 		ListNode footer = null;
-		while(cur!=null && cur.next!=null){
+		while (cur != null && cur.next != null) {
 			next = cur.next;
-			//System.err.println(next.val);
-			if(cur.val <= next.val){
+			// System.err.println(next.val);
+			if (cur.val <= next.val) {
 				cur = next;
-			}else{
+			} else {
 				footer = cur;
 				pre = null;
 				cur = head;
-				while(cur!=footer && cur.val <= next.val){
+				while (cur != footer && cur.val <= next.val) {
 					pre = cur;
 					cur = cur.next;
 				}
-				
-				if(pre == null){
+
+				if (pre == null) {
 					pre = next;
-					footer.next=next.next;
+					footer.next = next.next;
 					next.next = cur;
 					head = pre;
-				}else{
+				} else {
 					pre.next = next;
-					footer.next=next.next;
+					footer.next = next.next;
 					next.next = cur;
 				}
 				cur = footer;
 			}
 		}
 		return head;
-		
+
 	}
 }
 

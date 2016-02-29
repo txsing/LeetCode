@@ -1,4 +1,5 @@
 package com.leetcode.algorithm;
+
 import java.util.Arrays;
 
 public class Q4_MedianOfTwoSortedArrays {
@@ -20,8 +21,8 @@ public class Q4_MedianOfTwoSortedArrays {
 		return result;
 	}
 
-	//两个排序好了的数组A、B合并为AB，找第k大的数，如果数组A的第k/2大的数小于数组B的第k/2大的数，那么说明A[0...K/2-1]一定都在AB[k]的左边。
-	//利用这一逻辑，可以不断地递归剔除A[0...K/2-1]直到结束，复杂度 o(log(m+n))
+	// 两个排序好了的数组A、B合并为AB，找第k大的数，如果数组A的第k/2大的数小于数组B的第k/2大的数，那么说明A[0...K/2-1]一定都在AB[k]的左边。
+	// 利用这一逻辑，可以不断地递归剔除A[0...K/2-1]直到结束，复杂度 o(log(m+n))
 	int findKth(int[] s1, int m, int[] s2, int n, int k) {
 		if (m > n) {
 			return findKth(s2, n, s1, m, k);
@@ -36,7 +37,6 @@ public class Q4_MedianOfTwoSortedArrays {
 		int i = Math.min(m, k / 2);
 		int j = Math.min(n, k / 2);
 
-
 		if (s1[i - 1] < s2[j - 1]) {
 			int[] temp = Arrays.copyOfRange(s1, i, s1.length);
 			return findKth(temp, m - i, s2, n, k - i);
@@ -46,10 +46,11 @@ public class Q4_MedianOfTwoSortedArrays {
 		}
 	}
 
-	//log(min(m,n))
-	//将A、B数组各自都分成两部分A[0~i-1] A[i~m] 以及 B[0~j-1] B[j~n]
-	//找到一个i从而满足 1) len(left_part) == len(right_part) 2) max(left_part) <= min(right_part) 即可
-	//利用二分查找法找 i
+	// log(min(m,n))
+	// 将A、B数组各自都分成两部分A[0~i-1] A[i~m] 以及 B[0~j-1] B[j~n]
+	// 找到一个i从而满足 1) len(left_part) == len(right_part) 2) max(left_part) <=
+	// min(right_part) 即可
+	// 利用二分查找法找 i
 	public double findMedianSortedArrays2(int[] A, int[] B) {
 		int m = A.length;
 		int n = B.length;
@@ -88,7 +89,7 @@ public class Q4_MedianOfTwoSortedArrays {
 					} else {
 						right_min = Math.min(A[i], B[j]);
 					}
-				return (left_max + right_min) / 2.0;	
+					return (left_max + right_min) / 2.0;
 				}
 			}
 		}
