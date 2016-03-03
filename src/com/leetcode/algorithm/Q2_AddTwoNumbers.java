@@ -8,8 +8,7 @@ public class Q2_AddTwoNumbers {
     	ListNode t1p = t1;
     	ListNode t2p = t2;
 
-        while((t1 != null)&&(t2 != null))
-        {
+        while((t1 != null)&&(t2 != null)){
         	sum = t1.val+t2.val+carry;
             t1.val = t2.val = sum%10;
             carry = sum/10;

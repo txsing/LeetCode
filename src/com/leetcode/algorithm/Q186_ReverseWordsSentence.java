@@ -1,7 +1,6 @@
 package com.leetcode.algorithm;
 
 class Q186_ReverseWordsSentence {
-
 	public static void main(String[] args) {
 		String rawStr = "the sky is blue";
 		System.out.println(reverseWords(rawStr));

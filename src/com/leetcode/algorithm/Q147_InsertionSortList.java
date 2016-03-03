@@ -23,7 +23,6 @@ public class Q147_InsertionSortList {
 		ListNode footer = null;
 		while (cur != null && cur.next != null) {
 			next = cur.next;
-			// System.err.println(next.val);
 			if (cur.val <= next.val) {
 				cur = next;
 			} else {
