@@ -48,8 +48,7 @@ public class Q4_MedianOfTwoSortedArrays {
 
 	// log(min(m,n))
 	// 将A、B数组各自都分成两部分A[0~i-1] A[i~m] 以及 B[0~j-1] B[j~n]
-	// 找到一个i从而满足 1) len(left_part) == len(right_part) 2) max(left_part) <=
-	// min(right_part) 即可
+	// 找到一个i从而满足 1) len(left_part) == len(right_part) 2) max(left_part) <= min(right_part) 即可
 	// 利用二分查找法找 i
 	public double findMedianSortedArrays2(int[] A, int[] B) {
 		int m = A.length;
