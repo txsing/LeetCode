@@ -6,13 +6,13 @@ class Q28_strstr {
 		String target = "babcbabcabcaabcabcabcacabc";
 		String pattern = "abcabcacab";
 
-		System.out.println(strstr1(target, pattern));
+		System.out.println(sunday(target, pattern));
 	}
 
 	/*
 	 * KMP
 	 */
-	static int strstr(String t, String p) {
+	static int KMP(String t, String p) {
 		if (p.length() == 0)
 			return 0;
 		if (t.length() < p.length())
@@ -57,11 +57,11 @@ class Q28_strstr {
 	}
 
 	/*
-	 * Rabin-Karp
-	 * expected matching complexity = O(M+N) when q >> M; preprocess complexity =o(M) 
+	 * Rabin-Karp expected matching complexity = O(M+N) when q >> M; preprocess
+	 * complexity =o(M)
 	 */
-	static int strstr1(String txt, String pat) {
-		int q = 101; //a prime number
+	static int rabinkarp(String txt, String pat) {
+		int q = 101; // a prime number
 		int d = 95; //
 		int M = pat.length();
 		int N = txt.length();
@@ -103,11 +103,50 @@ class Q28_strstr {
 			// add trailing digit
 			if (i < N - M) {
 				t = (d * (t - txt.charAt(i) * h) + txt.charAt(i + M)) % q;
-
 				// We might get negative value of t, converting it to positive
 				if (t < 0)
 					t = (t + q);
 			}
+		}
+		return -1;
+	}
+
+	/**
+	 * Sunday Algorithm
+	 * @param target
+	 * @param pattern
+	 * @return
+	 */
+	static int sunday(String target, String pattern) {
+		int n = target.length();
+		int m = pattern.length();
+		int begin = 0; // compare T[begin, begin+m-1] and P[0,m-1]
+		while (begin <= n - m) {
+			int i = begin;
+			int j = 0;
+			//check char one by one
+			while (j < m && target.charAt(i++) == pattern.charAt(j++)) {
+				;
+			}
+			
+			if (j == m) {
+				return begin;
+			}
+			
+			//if begin+m already reach the end of target string and still no match found
+			//then return -1
+			if(begin == n-m){
+				return -1;
+			}
+			
+			//check whether the following char of T[begin, begin+m] -->T[begin+m]
+			//is in pattern string or not.
+			//if pattern string doesn't contain T[begin+m], then target string 
+			//move m+1 chars left. 
+			
+			//the time complexity lastIndexOf() can be O(1) by using HashMap 
+			int index = pattern.lastIndexOf(target.charAt(begin + m));
+			begin = begin + m - index;
 		}
 		return -1;
 	}
