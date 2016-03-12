@@ -13,6 +13,7 @@ public class Q_39CombinationSum {
 	}
 
 	public static List<List<Integer>> combinationSum(int[] candidates, int target) {
+		Arrays.sort(candidates);
 		find(candidates, target, 0);
 		return result;
 	}
