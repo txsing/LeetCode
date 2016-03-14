@@ -7,7 +7,9 @@ class Solution(object):
         """
         '''
         here we use the 3Sum which already implemented in last exercise, to solve 4Sum problem.
-        Moreover, we can further implement NSum using recursive function, deduct NSum to 2Sum
+        Moreover, inspired by the way we solve 4Sum, I further implement FindNSum using recursion,
+        deducting NSum to 2Sum
+        runtime: 300ms
         '''
         result = []
         nums.sort()
