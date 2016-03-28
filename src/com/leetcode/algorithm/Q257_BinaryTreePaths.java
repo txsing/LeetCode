@@ -1,7 +1,9 @@
 package com.leetcode.algorithm;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
 
 public class Q257_BinaryTreePaths {
 	
@@ -21,7 +23,7 @@ public class Q257_BinaryTreePaths {
 	}
 	
 	/**
-	 * recursive implementation of preorder traversal
+	 * recursive implementation of pre-order traversal
 	 * @param root
 	 * @return
 	 */
@@ -49,4 +51,42 @@ public class Q257_BinaryTreePaths {
 		}
 
 	}
+	
+	/**
+	 * non-recursive implementation of pre-order traversal
+	 * @param root
+	 * @return
+	 */
+	public List<String> binaryTreePaths2(TreeNode root) {
+		List<String> results = new ArrayList<String>();
+		if (root == null) {
+			return results;
+		}
+		TreeNode T = root;
+		TreeNode temp = null;
+		Stack<TreeNode> stack = new Stack<TreeNode>();
+		String path = "";
+		while(T!=null || !stack.isEmpty()){
+			while(T!=null){
+				stack.push(T);
+				path = path + T.val + "->";
+				T = T.left;
+			}
+			T = stack.pop();
+			temp = T;
+			//path = path.substring(0,path.lastIndexOf(T.val+""));
+			T = T.right;
+			if(T == null && temp.left == null){
+				results.add(path.substring(0, path.length() - 2));
+			}
+			
+			if(temp != null){
+				String str = temp.val+"";
+				path = path.substring(0, path.lastIndexOf(str)+str.length()+2);
+			}
+		}
+		return results;
+	}
+	
+	
 }
