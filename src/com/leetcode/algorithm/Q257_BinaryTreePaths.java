@@ -53,40 +53,40 @@ public class Q257_BinaryTreePaths {
 	}
 	
 	/**
-	 * non-recursive implementation of pre-order traversal
+	 * non-recursive implementation
 	 * @param root
 	 * @return
 	 */
 	public List<String> binaryTreePaths2(TreeNode root) {
 		List<String> results = new ArrayList<String>();
-		if (root == null) {
+		if(root == null){
 			return results;
 		}
-		TreeNode T = root;
-		TreeNode temp = null;
+		
 		Stack<TreeNode> stack = new Stack<TreeNode>();
-		String path = "";
-		while(T!=null || !stack.isEmpty()){
-			while(T!=null){
-				stack.push(T);
-				path = path + T.val + "->";
-				T = T.left;
-			}
-			T = stack.pop();
-			temp = T;
-			//path = path.substring(0,path.lastIndexOf(T.val+""));
-			T = T.right;
-			if(T == null && temp.left == null){
-				results.add(path.substring(0, path.length() - 2));
+		Stack<String> pathStack = new Stack<String>();
+		stack.push(root);
+		pathStack.push(root.val+"");
+		
+		while(!stack.isEmpty()){
+			TreeNode cur = stack.pop();
+			String tmp = pathStack.pop();
+			
+			if(cur.left == null && cur.right == null){
+				results.add(tmp);
+				continue;
 			}
 			
-			if(temp != null){
-				String str = temp.val+"";
-				path = path.substring(0, path.lastIndexOf(str)+str.length()+2);
+			if(cur.left != null){
+				stack.push(cur.left);
+				pathStack.push(tmp + "->" + cur.left.val);
+			}
+			
+			if(cur.right != null){
+				stack.push(cur.right);
+				pathStack.push(tmp + "->" + cur.right.val);
 			}
 		}
 		return results;
 	}
-	
-	
 }
