@@ -18,7 +18,8 @@ public class Q95_UniqueBinarySearchTrees2 {
 	}
 
     public List<TreeNode> generateTrees(int n) {
-        List<TreeNode>[] result = new ArrayList[n+1];
+        @SuppressWarnings("unchecked")
+		List<TreeNode>[] result = new ArrayList[n+1];
         result[0] = new ArrayList<TreeNode>();
         result[0].add(null);
 
