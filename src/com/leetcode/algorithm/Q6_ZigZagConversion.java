@@ -2,11 +2,11 @@ package com.leetcode.algorithm;
 
 public class Q6_ZigZagConversion {
 	/**
-	 * 0   6   null
-	 * 1  57  null
-	 * 2 4 8 10
-	 * 3   9
-	 * the structure of a interval is |/, there are 2 intervals, the first one is 0-5, the second one is 6-10
+	 * 0    6     null
+	 *  1  5 7   null
+	 *  2 4  8 10
+	 *  3    9
+	 * the structure of a interval is |/, so in the above example, there are 2 intervals, the first one is 0-5, the second one is 6-10
 	 * the length of a full interval is 6 = 2 * (Rows - 1)
 	 */
     public String convert(String s, int numRows) {

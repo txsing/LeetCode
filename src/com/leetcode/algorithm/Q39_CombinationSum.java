@@ -2,7 +2,7 @@ package com.leetcode.algorithm;
 
 import java.util.*;
 
-public class Q_39CombinationSum {
+public class Q39_CombinationSum {
 	static List<List<Integer>> result = new ArrayList<>();
 	static List<Integer> temp = new ArrayList<>();
 
