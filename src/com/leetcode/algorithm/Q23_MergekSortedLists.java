@@ -1,7 +1,6 @@
 package com.leetcode.algorithm;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.PriorityQueue;
 
 public class Q23_MergekSortedLists {
@@ -16,8 +15,9 @@ public class Q23_MergekSortedLists {
 	}
 
 	/*
-	 * Priority Queue to solve this problem
-	 * 
+	 * Priority Queue (Heap structure) to solve this problem
+	 * n*log(k)
+	 * the tree depth is always log(k)
 	 */
 	public ListNode mergeKLists(ListNode[] lists) {
 		if (lists == null || lists.length == 0)
@@ -26,12 +26,7 @@ public class Q23_MergekSortedLists {
 		PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(lists.length, new Comparator<ListNode>() {
 			@Override
 			public int compare(ListNode o1, ListNode o2) {
-				if (o1.val < o2.val)
-					return -1;
-				else if (o1.val == o2.val)
-					return 0;
-				else
-					return 1;
+				return o1.val-o2.val;
 			}
 		});
 
@@ -39,6 +34,7 @@ public class Q23_MergekSortedLists {
 			if(node != null) //can not add null object into queue
 				queue.add(node);
 
+		//dummy node is useful to solve such cases (make code concise)
 		ListNode dummy = new ListNode(0);
 		ListNode temp = dummy;
 		while (!queue.isEmpty()) {
