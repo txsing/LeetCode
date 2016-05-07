@@ -9,7 +9,7 @@ public class Q31_NextPermutation {
 			if (nums[l] < nums[r]) {
 				r = nums.length;
 				do r--;
-				while (nums[l] >= nums[--r]);
+				while (nums[l] >= nums[r]);
 				swap(nums, l, r);
 				quicksort(nums, l + 1);
 				return;
