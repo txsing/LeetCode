@@ -11,7 +11,11 @@ public class Q31_NextPermutation {
 				do r--;
 				while (nums[l] >= nums[r]);
 				swap(nums, l, r);
-				quicksort(nums, l + 1);
+				
+                for(r = l+1; r<(nums.length+l+1)/2; r++){
+                    swap(nums, r, nums.length+l-r);
+                }
+                
 				return;
 			}
 			r--;
