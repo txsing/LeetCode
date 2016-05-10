@@ -10,7 +10,7 @@ public class Q33_SearchinRotatedSortedArray {
 		if (nums.length == 1) {
 			return nums[0] == target ? 0 : -1;
 		}
-		//find the minimal value
+		// find the minimal value
 		while (l < r) {
 			mid = (l + r) / 2;
 			if (nums[mid] == target) {
@@ -22,9 +22,25 @@ public class Q33_SearchinRotatedSortedArray {
 			else
 				r = mid;
 		}
-		mid = r;
-		int index = bs(nums, 0, mid - 1, target);
-		return index != -1 ? index : bs(nums, mid, len - 1, target);
+
+		int rot = l;
+		l = 0;
+		r = len - 1;
+
+		while (l <= r) {
+			mid = (l + r) / 2;
+			int realmid = (mid + rot) % len;
+			if (nums[realmid] == target)
+				return realmid;
+			if (nums[realmid] < target)
+				l = mid + 1;
+			else
+				r = mid - 1;
+		}
+		return -1;
+		// mid = r;
+		// int index = bs(nums, 0, mid - 1, target);
+		// return index != -1 ? index : bs(nums, mid, len - 1, target);
 	}
 
 	public static int bs(int[] nums, int s, int e, int target) {
@@ -41,7 +57,7 @@ public class Q33_SearchinRotatedSortedArray {
 		}
 
 		while (s <= e) {
-			//noted that it is "s + (e - s)/2"
+			// noted that it is "s + (e - s)/2"
 			mid = s + (e - s) / 2;
 			if (nums[mid] == target)
 				return mid;
