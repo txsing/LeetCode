@@ -26,7 +26,9 @@ public class Q33_SearchinRotatedSortedArray {
 		int rot = l;
 		l = 0;
 		r = len - 1;
-
+		
+		//一個數組向右平移d步，平移之後，給定新數組的下標 i ，如何求出新數組該坐標下的元素的原始下標 j
+		//j = (i + d)% n （注：向左平移d步等同於向右平移 n - d步，因此 j = (i + n - d)%n
 		while (l <= r) {
 			mid = (l + r) / 2;
 			int realmid = (mid + rot) % len;
